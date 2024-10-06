@@ -29,10 +29,10 @@ Before running the application, make sure you have the following installed:
 ## Installation
 
 1. **Clone the Repository**
-
-2. **Create a virtual environment**
    git clone https://github.com/ranaNasmin/flask-user-authentication.git
    cd flask-user-authentication
+
+2. **Create a virtual environment**
 python -m venv venv
 source venv/bin/activate  # On Windows use `venv\Scripts\activate`
 
