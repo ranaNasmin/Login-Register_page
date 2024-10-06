@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='register.css') }}" type="text/css">
+</head>
+<body>
+    <div class="container">
+        <div class="card-container">
+            <h1>Login here</h1>
+            <form method="POST" action="{{ url_for('login') }}">
+                <div class="first_section">
+                    <input type="text" name="email" placeholder="email" required>
+                    <input type="password" name="password" placeholder="password" required>
+                    <button value="login" type="submit">Login</button>
+                    <div class="msg">{{ msg }}</div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

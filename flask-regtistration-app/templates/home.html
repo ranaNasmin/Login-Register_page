@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X. It's what's happening / X</title>
+    <link rel="icon" type="image/x-icon" href="images\X-vector-logo.png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+</head>
+<body>
+    <div class="root">
+        <div class="desktop-left">
+            <div class="logo">
+                <img class="logo-img" src="{{ url_for('static', filename='img/file.png') }}" alt="error404">
+            </div>  
+        </div>
+
+        <div class="desktop-right">
+            <div class="right">
+                <div class="tagline">
+                    <span class="tagline" style="text-overflow: unset">Happening now</span>
+                </div>
+                <div class="join-text">
+                    <span class="join-text" style="text-overflow: unset">Join today.</span>
+                </div>
+                <div class="signup-form">
+                    <form class="signup" action="{{ url_for('login') }}" method="POST">
+                        <div class="google">
+                            <img class="google-logo" src="{{ url_for('static', filename='img/google.png') }}" alt="error404" >
+                           <input class="text-box" name="username" type="text" placeholder="Sign up with Google" >
+                        </div>
+                        <div class="apple">
+                            <img class="apple-logo" src="{{ url_for('static', filename='img/apple-logo.png') }}" alt="error404">
+                            <input class="text-box2" name="username" type="text" placeholder="Sign up with Apple" >
+                        </div>
+                        <div class="line">
+                            <span><h2 class="line">or</h2></span>
+                        </div>
+                        <div class="submit">
+                            <button class="submit-btn" type="button" value="login">
+                                <label>
+                                    <a href="{{url_for('register')}}">Create account</a>
+                                </label>
+                            </button>
+                        </div>
+                    <div class="terms">
+                        <span class="privacyterms"><p>By signing up, you agree to the
+                            <a href="Terms of Service">Terms of Service</a>and
+                            <a href="Privacy Policy">Privacy <br>Policy</a>
+                            including Cookie Use.</p>
+                        </span>
+                    </div>
+                
+                <div class="sign-in">
+                    <div class="sign-in-text">
+                        <h3>Already have an account?</h3>
+                    </div>
+                    <div class="sign-in-textbox">
+                        <button class="sign-in-button" value="login" formaction="{{ url_for('login') }}">Sign in</button>
+                    </div>
+                </div>
+            </form> 
+        </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <footer class="menu">
+            <span>
+                    <a href="#">About</a>
+                    <a href="#">Download X app</a>
+                    <a href="#">Help center</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Cookies Policy</a>
+                    <a href="#">Acccesibility</a>
+                    <a href="#">Ads info </a>
+                    <a href="#">Blog</a>
+                    <a href="#">Careers</a>
+                    <a href="#">Advertising</a>
+                    <a href="#">Marketing</a>
+                    <a href="#">X for business</a>
+                    <br>
+                    <a href="#">Developers</a>
+                    <a href="#">Directory</a>
+                    <a href="#x ">Settings</a>
+                    <a href="#">2024 corp</a>.
+            </span>
+        </footer>
+    </div>
+</body>
+</html>

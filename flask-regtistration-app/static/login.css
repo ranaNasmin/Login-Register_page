@@ -1,0 +1,182 @@
+body{
+    background: rgb(0, 0, 0);
+    font-family: system-ui; 
+    color: white;
+}
+.desktop-left{
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+
+.logo{  
+    margin-right: 10px;
+    margin-top: 132px;
+    margin-bottom: 115px;
+    overflow: hidden;
+}
+.logo-img{
+    width: 628px;
+    height: 40%;    
+    box-sizing: border-box;
+}
+.desktop-right{
+    position: relative;
+    scrollbar-width: 30px;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height:auto;
+    flex-wrap: wrap;
+    font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+}
+.right{
+    padding-top: 74px;
+}
+.tagline{
+    font-family: inherit;
+    color: white;
+    font-size: 64px;
+    font-weight: 700;
+    letter-spacing: -1.2px;
+}
+.join-text{
+    padding-top: 10%;
+    font-family:"TwitterChirpExtendedHeavy", "Verdana", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: white;
+    font-size: 31px;
+    font-weight: 600;
+}
+.signup{
+    display: flex;
+    flex-direction: column;
+    padding-top: 37px;
+    flex-wrap: wrap;
+    font-family: inherit;
+    font-weight: 500;
+} 
+.text-box{
+    
+    border: none;
+    border-radius: 31px;
+    padding: 11px;
+    width: 278px;
+    text-align: center;
+    font-family: inherit;
+    font-weight: inherit;
+}
+::placeholder{
+    color: #282C35;
+    font-family:"TwitterChirpExtendedHeavy", "Verdana", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 13px;
+
+}
+.google-logo{
+    position: absolute;
+    height:18px;
+    align-content: center;
+    padding-left: 58px;
+    padding-top: 10px;
+
+}
+.apple-logo{
+    position: absolute;
+    height:20px;
+    align-content: center;
+    padding-left: 60px;
+    padding-top: 17px;
+}
+.text-box2{
+    border: none;
+    border-radius: 31px;
+    padding: 11px;
+    width: 278px;
+    text-align: center;
+    margin-top: 10px;
+    font-family: inherit;
+    font-weight: inherit;
+}
+.line{
+    width: 63%;
+    display: grid;
+    grid-template-columns: repeat(3,0.5fr);
+    align-items: center;
+    color:grey;
+    font-size: 14px;
+    font-weight: 100;
+    column-gap: 3px;
+    text-decoration-color: white;
+}
+.line::before ,.line::after{
+    content: "";
+    height: 0.5px;
+    background:grey;
+    display: block;
+}
+.line::after{
+    position: relative;
+    right: 49%;
+    width: 103%
+}
+.line::before{
+    position: relative;
+    width:103% ;
+}
+.submit{
+    height: 34px;
+    
+}
+.submit-btn{
+    width: 52%;
+    border: none;
+    border-radius: 20px;
+    padding: 11px;
+    background: rgb(29, 155, 240);
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 15px;
+    color: white;
+}
+
+.privacyterms
+{
+    color: grey;
+    position: absolute;
+    font-size: 10px;
+}
+.sign-in{
+    position: relative;
+    top: 97px;
+}
+.sign-in-text{
+    color: white;
+}
+.sign-in-button{
+    border: 0.5px , solid, rgb(42, 42, 42);
+    border-radius: 25px;
+    padding: 10px;
+    color: rgb(29, 155, 240);
+    background: black;
+    width: 55%;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: inherit;
+}
+footer span{
+    width: 90%;
+    height: fit-content;
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+    position: relative;
+    top: 82px;
+    left: 100px;
+    font-size: 14px;
+    font-family: inherit;
+}
+footer span a{
+    text-decoration: none;
+    color: grey;
+
+}
