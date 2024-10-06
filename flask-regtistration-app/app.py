@@ -1,10 +1,11 @@
 from flask import Flask, render_template, request, redirect, session
 from flask_mysqldb import MySQL
-import MySQLdb.cursors, re , hashlib
+import MySQLdb.cursors, re , os
+from flask_bcrypt import Bcrypt
 
 
 app = Flask(__name__, template_folder='templates')
-app.secret_key = 'newkey'
+app.secret_key = os.urandom(24)
 
 
 app.config['MYSQL_HOST'] = 'localhost'
@@ -12,7 +13,7 @@ app.config['MYSQL_USER'] = 'sqluser'
 app.config['MYSQL_PASSWORD'] = 'password'
 app.config['MYSQL_DB'] = 'testdb'
 
-
+bcrypt=Bcrypt(app)
 mysql = MySQL(app)
 
 @app.route('/')
@@ -28,13 +29,13 @@ def login():
         email = request.form['email']
         password = request.form['password']
 
-        hash = password+app.secret_key
-        hash = hashlib.sha1(hash.encode())
-        password = hash.hexdigest()
+        hashed_password = bcrypt.generate_password_hash('password').decode('utf-8')
+        # hash = hashlib.sha1(hash.encode())
+        # password = hash.hexdigest()
 
     # check if the username and email exist or not
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute("SELECT * FROM xlogin WHERE email = %s AND password = %s", (email, password))
+        cursor.execute("SELECT * FROM xlogin WHERE email = %s AND password = %s", (email, hashed_password))
         account = cursor.fetchone()        
 
         if account:
@@ -73,11 +74,10 @@ def register():
         elif not username or not password or not email:
             msg = "Please fill out the form completely"
         else:
-            hash = password + app.secret_key
-            hash = hashlib.sha1(hash.encode())
-            password = hash.hexdigest()
-            #Account doesn't exist and the form data is valid , so insert a new entry into the database.
-            cursor.execute("INSERT INTO xlogin VALUE(NULL, %s,%s,%s)", (username,password,email))
+            # hash the password
+            hashed_password = bcrypt.generate_password_hash('password').decode('utf-8')
+            # Account doesn't exist and the form data is valid , so insert a new entry into the database.
+            cursor.execute("INSERT INTO xlogin VALUE(NULL, %s,%s,%s)", (username,hashed_password,email))
             mysql.connection.commit()
             msg = "You have registered successfully"
 
