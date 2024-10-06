@@ -10,7 +10,7 @@ app.secret_key = os.urandom(24)
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'sqluser'
-app.config['MYSQL_PASSWORD'] = 'password'
+app.config['MYSQL_PASSWORD'] = '******'
 app.config['MYSQL_DB'] = 'testdb'
 
 bcrypt=Bcrypt(app)
