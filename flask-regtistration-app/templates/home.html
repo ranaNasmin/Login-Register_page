@@ -32,6 +32,7 @@
                         <div class="apple">
                             <img class="apple-logo" src="{{ url_for('static', filename='img/apple-logo.png') }}" alt="error404">
                             <input class="text-box2" name="username" type="text" placeholder="Sign up with Apple" >
+                            <input type="hidden" name="csrf_token" value = "{{ csrf_token() }}" />
                         </div>
                         <div class="line">
                             <span><h2 class="line">or</h2></span>
