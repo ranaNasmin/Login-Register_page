@@ -15,6 +15,7 @@
                     <input type="text" name="email" placeholder="email" required>
                     <input type="password" name="password" placeholder="password" required>
                     <button value="login" type="submit">Login</button>
+                    <input type="hidden" name="csrf_token" value = "{{ csrf_token() }}" />
                     <div class="msg">{{ msg }}</div>
 
                 </div>
