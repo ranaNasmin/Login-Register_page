@@ -1,20 +1,24 @@
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, session
 from flask_mysqldb import MySQL
 import MySQLdb.cursors, re , os
 from flask_bcrypt import Bcrypt
-
+from flask_wtf import CSRFProtect
 
 app = Flask(__name__, template_folder='templates')
 app.secret_key = os.urandom(24)
 
-
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'sqluser'
-app.config['MYSQL_PASSWORD'] = '******'
+app.config['MYSQL_PASSWORD'] = 'password'
 app.config['MYSQL_DB'] = 'testdb'
+app.config['SESSION_COOKIE_SECURE'] = True
+app.config['SESSION_COOKIE_HTTPONLY'] = True
+app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
 
 bcrypt=Bcrypt(app)
 mysql = MySQL(app)
+csrf = CSRFProtect(app)
+
 
 @app.route('/')
 def home():
@@ -24,30 +28,25 @@ def home():
 #login route
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-
+    msg = ''
     if request.method == 'POST' and 'email' in request.form and "password" in request.form:
         email = request.form['email']
         password = request.form['password']
 
-        hashed_password = bcrypt.generate_password_hash('password').decode('utf-8')
-        # hash = hashlib.sha1(hash.encode())
-        # password = hash.hexdigest()
-
-    # check if the username and email exist or not
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute("SELECT * FROM xlogin WHERE email = %s AND password = %s", (email, hashed_password))
-        account = cursor.fetchone()        
+        cursor.execute("SELECT * FROM xlogin WHERE email = %s", (email,))
+        account = cursor.fetchone()
 
-        if account:
+        if account and bcrypt.check_password_hash(account['password'], password):
             session['loggedin'] = True
             session['id'] = account['id']
             session['email'] = account['email']
-            return " You have successfully logged in"
+            msg = "You have successfully logged in"
 
-        else: 
-            return "invalid email or password"
+        else:
+            msg = "Invalid email or password"
         
-    return render_template('login.html')
+    return render_template('login.html', msg = msg)
 
 
 
@@ -74,9 +73,10 @@ def register():
         elif not username or not password or not email:
             msg = "Please fill out the form completely"
         else:
-            # hash the password
-            hashed_password = bcrypt.generate_password_hash('password').decode('utf-8')
-            # Account doesn't exist and the form data is valid , so insert a new entry into the database.
+            hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+
+            
+            #Account doesn't exist and the form data is valid , so insert a new entry into the database.
             cursor.execute("INSERT INTO xlogin VALUE(NULL, %s,%s,%s)", (username,hashed_password,email))
             mysql.connection.commit()
             msg = "You have registered successfully"
